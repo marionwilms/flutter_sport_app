@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sport_app/routes/SerieRunPage.dart';
 
 import '../data/Serie.dart';
 
 class ExerciseDetails extends StatelessWidget {
-  final Serie serieTest;
+  final Serie currentSerie;
 
-  ExerciseDetails({Key key, @required this.serieTest}) : super(key:key);
+  ExerciseDetails({Key key, @required this.currentSerie}) : super(key:key);
 
   Widget _buildListView (BuildContext context){
     return ListView.builder(
@@ -23,7 +24,7 @@ class ExerciseDetails extends StatelessWidget {
                       padding:
                       const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
                       child: Text(
-                        serieTest.exercises[position].title,
+                        currentSerie.exercises[position].title,
                         style: TextStyle(
                             fontSize: 22.0, fontWeight: FontWeight.bold),
                       ),
@@ -32,7 +33,7 @@ class ExerciseDetails extends StatelessWidget {
                       padding:
                       const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
                       child: Text(
-                        serieTest.exercises[position].length,
+                        currentSerie.exercises[position].length,
                         style: TextStyle(fontSize: 18.0),
                       ),
                     ),
@@ -63,14 +64,14 @@ class ExerciseDetails extends StatelessWidget {
           ],
         );
       },
-      itemCount: serieTest.exercises.length,
+      itemCount: currentSerie.exercises.length,
     );
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(serieTest.title),
+        title: Text(currentSerie.title),
       ),
       body: Center(
         child: Column(
@@ -80,7 +81,12 @@ class ExerciseDetails extends StatelessWidget {
               child: _buildListView(context)
             ),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SerieRunPage(currentSerie:currentSerie)),
+                );
+              },
               textColor: Colors.white,
               color: Colors.black,
               child: Text(
