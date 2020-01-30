@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'Serie.dart';
+import '../data/Serie.dart';
 
 class ExerciseDetails extends StatelessWidget {
   final Serie serieTest;

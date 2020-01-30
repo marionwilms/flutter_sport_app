@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sport_app/routes/Exercise.dart';
 
 import 'ExerciseDetails.dart';
-import 'Serie.dart';
+import 'package:flutter_sport_app/data/globals.dart' as global;
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -24,28 +23,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var exo1 = Exercise('etirement1', '30s');
-  var exo2 = Exercise('etirement2', '35s');
-  var exo3 = Exercise('squat', 'x30');
-  var exo4 = Exercise('abdos', 'x40');
-  var serie1;
-  var serie2;
-  var serie3;
-  var firstState = true;
-  List<Serie> serie = new List();
-
-  iniList(bool state) {
-    if (state == true) {
-      serie1=Serie('serie1', '20min', [exo1, exo2]);
-      serie2=Serie('serie2', '25min', [exo3, exo4]);
-      serie3=Serie('serie3', '23min', [exo1, exo4]);
-      serie.add(serie1);
-      serie.add(serie2);
-      serie.add(serie3);
-    }
-  }
-
-  @override
   Widget _buildListView(BuildContext context) {
     return ListView.builder(
         itemBuilder: (context, position) {
@@ -61,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding:
                         const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
                         child: Text(
-                          serie[position].title,
+                          global.serieL[position].title,
                           style: TextStyle(
                               fontSize: 22.0, fontWeight: FontWeight.bold),
                         ),
@@ -70,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding:
                         const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
                         child: Text(
-                          serie[position].length,
+                          global.serieL[position].length,
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ),
@@ -91,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ExerciseDetails(serieTest:serie[position])),
+                                MaterialPageRoute(builder: (context) => ExerciseDetails(serieTest:global.serieL[position])),
                               );
                             },
                           ),
@@ -108,13 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           );
         },
-        itemCount: serie.length,
+        itemCount: global.serieL.length,
       );
   }
   
   Widget build(BuildContext context) {
-    iniList(firstState);
-    firstState=false;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -130,7 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: _buildListView(context)
+        child: Text(global.title)
+        //_buildListView(context)
 
       ),
     );
