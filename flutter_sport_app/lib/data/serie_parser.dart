@@ -12,12 +12,12 @@ void loadSerie() {
   Serie serieInt;
   Exercise exoInt;
   global.title = serieList[0]['title'];
-//  for (var serie in serieList) {
-//    for (var exo in serieList['exerciseList']) {
-//      exoInt=Exercise(exo.title, exo.lenght);
-//      exoL.add(exoInt);
-//    }
-//    serieInt=Serie(serie.title, serie.lenght, exoL);
-//    global.serieL.add(serieInt);
-//  }
+  for (int i=0; i < serieList.length; i++)  {
+    for (int j=0; j < serieList[i]['exerciseList'].length; j++) {
+      exoInt=Exercise(serieList[i]['exerciseList'][j]['title'], serieList[i]['exerciseList'][j]['lenght']);
+      exoL.add(exoInt);
+    }
+    serieInt=Serie(serieList[i]['title'], serieList[i]['lenght'], exoL);
+    global.serieL.add(serieInt);
+  }
 }
