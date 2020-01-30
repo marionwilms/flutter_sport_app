@@ -10,16 +10,6 @@ class SerieRunPage extends StatefulWidget {
   final Serie currentSerie;
   SerieRunPage({Key key, this.title, @required this.currentSerie}) : super(key:key);
 
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -32,16 +22,27 @@ class _SerieRunPageState extends State<SerieRunPage>  {
   _SerieRunPageState({Key key, @required this.currentSerie});
   int _counter = 0;
   bool end = false;
+  bool lastTimer = false;
 
   void _incrementCounter() {
     setState(() {
       if (_counter < currentSerie.exercises.length - 2) {
         _counter++;
       }
+      else if (currentSerie.exercises[_counter+1].length[0] == 'x'){
+          _counter++;
+          end = true;
+      }
       else {
         _counter++;
-        end = true;
+        lastTimer = true;
       }
+    });
+  }
+
+  void _setEnd() {
+    setState(() {
+      end = true;
     });
   }
 
@@ -61,7 +62,7 @@ class _SerieRunPageState extends State<SerieRunPage>  {
       );
     }
     else{
-      if (currentSerie.exercises[_counter].title[0] == 'x'){
+      if (currentSerie.exercises[_counter].length[0] == 'x'){
         return RaisedButton(
           onPressed: _incrementCounter,
           textColor: Colors.white,
@@ -75,6 +76,11 @@ class _SerieRunPageState extends State<SerieRunPage>  {
         Timer(Duration(seconds: int.parse(currentSerie.exercises[_counter].length.substring(0,2))), () {
           _incrementCounter();
         });
+        if (lastTimer) {
+          Timer(Duration(seconds: int.parse(currentSerie.exercises[_counter].length.substring(0,2))), () {
+            _setEnd();
+          });
+        }
         return Icon(Icons.access_time);
       }
     }
@@ -93,24 +99,6 @@ class _SerieRunPageState extends State<SerieRunPage>  {
             Text(currentSerie.exercises[_counter].title),
             Text(currentSerie.exercises[_counter].length),
             _buildButtonSelection(context),
-//            !end ? RaisedButton(
-//              onPressed: _incrementCounter,
-//              textColor: Colors.white,
-//              color: Colors.black,
-//              child: Text(
-//                  'suivant',style: TextStyle(fontSize: 20)
-//              ),
-//            ):
-//            RaisedButton(
-//              onPressed: () {
-//                Navigator.pop(context);
-//              },
-//              textColor: Colors.white,
-//              color: Colors.black,
-//              child: Text(
-//                  'Fin',style: TextStyle(fontSize: 20)
-//              ),
-//            )
           ],
 
         ),
