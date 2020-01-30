@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sport_app/routes/MyHomePage.dart';
+import 'dart:async';
 
 
 import '../data/Serie.dart';
@@ -46,6 +46,40 @@ class _SerieRunPageState extends State<SerieRunPage>  {
   }
 
   @override
+
+  Widget _buildButtonSelection (BuildContext context){
+    if (end) {
+      return RaisedButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        textColor: Colors.white,
+        color: Colors.black,
+        child: Text(
+            'Fin',style: TextStyle(fontSize: 20)
+        ),
+      );
+    }
+    else{
+      if (currentSerie.exercises[_counter].title[0] == 'x'){
+        return RaisedButton(
+          onPressed: _incrementCounter,
+          textColor: Colors.white,
+          color: Colors.black,
+          child: Text(
+              'suivant',style: TextStyle(fontSize: 20)
+          ),
+        );
+      }
+      else {
+        Timer(Duration(seconds: int.parse(currentSerie.exercises[_counter].length.substring(0,2))), () {
+          _incrementCounter();
+        });
+        return Icon(Icons.access_time);
+      }
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -58,24 +92,25 @@ class _SerieRunPageState extends State<SerieRunPage>  {
             Image.asset('images/' + currentSerie.exercises[_counter].title + '.jpg'),  //all images should be in jpg and added in pubspec.yaml
             Text(currentSerie.exercises[_counter].title),
             Text(currentSerie.exercises[_counter].length),
-            !end ? RaisedButton(
-              onPressed: _incrementCounter,
-              textColor: Colors.white,
-              color: Colors.black,
-              child: Text(
-                  'suivant',style: TextStyle(fontSize: 20)
-              ),
-            ):
-            RaisedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              textColor: Colors.white,
-              color: Colors.black,
-              child: Text(
-                  'Fin',style: TextStyle(fontSize: 20)
-              ),
-            )
+            _buildButtonSelection(context),
+//            !end ? RaisedButton(
+//              onPressed: _incrementCounter,
+//              textColor: Colors.white,
+//              color: Colors.black,
+//              child: Text(
+//                  'suivant',style: TextStyle(fontSize: 20)
+//              ),
+//            ):
+//            RaisedButton(
+//              onPressed: () {
+//                Navigator.pop(context);
+//              },
+//              textColor: Colors.white,
+//              color: Colors.black,
+//              child: Text(
+//                  'Fin',style: TextStyle(fontSize: 20)
+//              ),
+//            )
           ],
 
         ),
