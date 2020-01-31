@@ -19,45 +19,55 @@ class MyHomePage extends StatelessWidget {
               Card(
                 color: Color.fromRGBO(110,151,159,0.8),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+                  borderRadius: BorderRadius.circular(20.0),
                 ),
-                child: new InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ExerciseDetails(currentSerie:global.serieL[position])),
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: new InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ExerciseDetails(currentSerie:global.serieL[position])),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Padding(
-                          padding:
-                          const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
-                          child: Text(
-                            global.serieL[position].title,
-                            style: TextStyle(
-                            fontSize: 22.0, fontFamily: 'Poppins', fontWeight: FontWeight.bold, color:Color.fromRGBO(248, 199, 183, 1)),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                          const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
-                          child: Text(
-                            global.serieL[position].length,
-                            style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins', color:Color.fromRGBO(248, 199, 183, 1),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding:
+                            const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
+                            child: Text(
+                              global.serieL[position].title,
+                              style: TextStyle(
+                              fontSize: 22.0, fontFamily: 'Poppins', fontWeight: FontWeight.bold, color:Color.fromRGBO(248, 199, 183, 1)),
                             ),
                           ),
-                        )
+                        ],
+                      ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  global.serieL[position].length,
+                                  style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins', color:Color.fromRGBO(248, 199, 183, 1),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              )
-                        ),
+              ),
               Divider(
                 height: 10.0,
                 color: Colors.transparent,
@@ -87,14 +97,18 @@ class MyHomePage extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text(
-                      title,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 45.0,
-                        letterSpacing: 10.0,
-                        color: Color.fromRGBO(110,151,159,1),
-                      )),
+                  Container(
+                    margin: const EdgeInsets.all(15.0),
+                    child: Text(
+                        title,
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 45.0,
+                          letterSpacing: 10.0,
+                          color: Color.fromRGBO(110,151,159,1),
+                        ),
+                    ),
+                  ),
                   Expanded(
                       child: _buildListView(context)
                   ),
