@@ -90,6 +90,7 @@ class _SerieRunPageState extends State<SerieRunPage>  {
     return Scaffold(
       appBar: AppBar(
         title: Text(currentSerie.title),
+        backgroundColor: Colors.transparent,
       ),
       body: Center(
         child: Column(

@@ -70,6 +70,7 @@ class ExerciseDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(currentSerie.title),
+        backgroundColor: Colors.transparent,
       ),
       body: Center(
         child: Column(

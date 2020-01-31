@@ -1,7 +1,7 @@
 library my_prj.globals;
 
 import 'Serie.dart';
-import 'Exercise.dart';
+
 
 var serieListJson = '''
 [
