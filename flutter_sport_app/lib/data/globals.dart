@@ -24,11 +24,11 @@ var serieListJson = '''
   "lenght": "25min",
   "exerciseList": [
     {
-    "title": "ETIREMENT1",
+    "title": "etirement1",
     "lenght": "30s"
     },
     {
-    "title": "ETIREMENT2",
+    "title": "etirement2",
     "lenght": "35s"
     }
   ]

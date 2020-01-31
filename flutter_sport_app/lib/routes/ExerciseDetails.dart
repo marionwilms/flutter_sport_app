@@ -46,10 +46,8 @@ class ExerciseDetails extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                            Icons.crop_original,
-                            size: 35.0,
-                            color: Colors.grey
+                        child: Image.asset('images/' + currentSerie.exercises[position].title + '.jpg', height: 100,
+                          width: 100,
                         ),
                       ),
                     ],
