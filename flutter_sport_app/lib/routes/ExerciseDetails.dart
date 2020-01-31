@@ -79,17 +79,21 @@ class ExerciseDetails extends StatelessWidget {
             Expanded(
               child: _buildListView(context)
             ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SerieRunPage(currentSerie:currentSerie)),
-                );
-              },
-              textColor: Colors.white,
-              color: Colors.black,
-              child: Text(
-                  'Commencer',style: TextStyle(fontSize: 20)
+            Container(
+              margin: EdgeInsets.all(5.0),
+              child : RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SerieRunPage(currentSerie:currentSerie)),
+                  );
+                },
+                textColor: Colors.white,
+                color: Colors.black,
+                padding:EdgeInsets.all(15.0),
+                child: Text(
+                    'Commencer',style: TextStyle(fontSize: 20)
+                ),
               ),
             ),
           ],
