@@ -68,40 +68,88 @@ class ExerciseDetails extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(currentSerie.title),
-        backgroundColor: Colors.transparent,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Expanded(
-              child: _buildListView(context)
-            ),
-            Container(
-              margin: EdgeInsets.all(5.0),
-              child : RaisedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SerieRunPage(currentSerie:currentSerie)),
-                  );
-                },
-                textColor: Colors.white,
-                color: Colors.black,
-                padding:EdgeInsets.all(15.0),
-                child: Text(
-                    'Commencer',style: TextStyle(fontSize: 20)
+      body: Container(
+        color: Color.fromRGBO(252, 234, 220, 1),
+        child: Stack(
+          children: <Widget> [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.all(15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:<Widget>[
+                        Column(
+                          children: <Widget>[
+                            IconButton(
+                                color: Colors.transparent,
+                                icon: Icon(
+                                  Icons.arrow_back_ios,
+                                  size: 35.0,
+                                  color: Color.fromRGBO(110,151,159,1),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => MyHomePage(title: 'Training')),
+                                  );
+                                }
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                currentSerie.title,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 45.0,
+                                  letterSpacing: 10.0,
+                                  color: Color.fromRGBO(110,151,159,1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ]
+                  ),
+                ),
+              Expanded(
+                child: _buildListView(context)
+              ),
+              Container(
+                margin: EdgeInsets.all(5.0),
+                child : RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SerieRunPage(currentSerie:currentSerie)),
+                    );
+                  },
+                  textColor: Colors.white,
+                  color: Colors.black,
+                  padding:EdgeInsets.all(15.0),
+                  child: Text(
+                      'Commencer',style: TextStyle(fontSize: 20)
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
 
+          ),
+        ],
         ),
       ),
 
     );
   }
 }
+
+
+
+
+
