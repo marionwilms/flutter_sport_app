@@ -78,6 +78,7 @@ class ExerciseDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(110, 151, 159, 0.8),
+        iconTheme: IconThemeData(color: Color.fromRGBO(252, 234, 220, 1)),
         title: Text(
           currentSerie.title,
           style: TextStyle(
