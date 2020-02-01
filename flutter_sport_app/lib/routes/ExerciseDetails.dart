@@ -27,7 +27,10 @@ class ExerciseDetails extends StatelessWidget {
                       child: Text(
                         currentSerie.exercises[position].title,
                         style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.bold),
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins',
+                          color: Color.fromRGBO(110, 151, 159, 1),),
                       ),
                     ),
                     Padding(
@@ -35,7 +38,11 @@ class ExerciseDetails extends StatelessWidget {
                       const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
                       child: Text(
                         currentSerie.exercises[position].length,
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontFamily: 'Poppins',
+                          color: Color.fromRGBO(110, 151, 159, 1),
+                        ),
                       ),
                     ),
                   ],
@@ -58,7 +65,7 @@ class ExerciseDetails extends StatelessWidget {
             ),
             Divider(
               height: 2.0,
-              color: Colors.grey,
+              color: Color.fromRGBO(110, 151, 159, 1),
             )
           ],
         );
@@ -69,6 +76,18 @@ class ExerciseDetails extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(110, 151, 159, 0.8),
+        title: Text(
+          currentSerie.title,
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 45.0,
+            letterSpacing: 10.0,
+            color: Color.fromRGBO(252, 234, 220, 1),
+          ),
+        ),
+      ),
       body: Container(
         color: Color.fromRGBO(252, 234, 220, 1),
         child: Stack(
@@ -76,7 +95,7 @@ class ExerciseDetails extends StatelessWidget {
               Center(
                 child: Column(
                   children: <Widget>[
-                    Container(
+                    /*Container(
                       margin: const EdgeInsets.all(15.0),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -116,7 +135,7 @@ class ExerciseDetails extends StatelessWidget {
                             ),
                           ]
                       ),
-                    ),
+                    ),*/
 
                     Expanded(
                         child: _buildListView(context)
@@ -131,8 +150,8 @@ class ExerciseDetails extends StatelessWidget {
                                 SerieRunPage(currentSerie: currentSerie)),
                           );
                         },
-                        textColor: Colors.white,
-                        color: Colors.black,
+                        textColor: Color.fromRGBO(252, 234, 220, 1),
+                        color: Color.fromRGBO(110, 151, 159, 1),
                         padding: EdgeInsets.all(15.0),
                         child: Text(
                             'Commencer', style: TextStyle(fontSize: 20)
