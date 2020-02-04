@@ -22,7 +22,7 @@ class MyHomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: new InkWell(
                     onTap: () {
                       Navigator.push(
@@ -54,13 +54,24 @@ class MyHomePage extends StatelessWidget {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  global.serieL[position].length,
-                                  style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins', color:Color.fromRGBO(248, 199, 183, 1),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Color.fromRGBO(248, 199, 183, 1),
+                                        width: 2.0,
+                                      ),
+                                      color:Colors.transparent,
+                                      shape: BoxShape.circle
+                                  ),
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    child: Text(global.serieL[position].length,
+                                    style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins', color:Color.fromRGBO(248, 199, 183, 1),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ],
+                              )],
                           ),
                         ),
                       ],
