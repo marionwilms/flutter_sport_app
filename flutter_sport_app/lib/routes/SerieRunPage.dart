@@ -28,12 +28,13 @@ class _SerieRunPageState extends State<SerieRunPage> {
 
   void _incrementCounter() {
     setState(() {
-      if (_counter < currentSerie.exercises.length - 1) {
+      if (_counter < currentSerie.exercises.length - 1 && currentSerie.exercises[_counter+1].length[0] != 'x') {
         _counter++;
-        if (currentSerie.exercises[_counter].length[0] != 'x') {
-          _seconds =
-              int.parse(currentSerie.exercises[_counter].length.substring(0, 2));
-        }
+        _seconds =
+            int.parse(currentSerie.exercises[_counter].length.substring(0, 2));
+      }
+      else if (_counter < currentSerie.exercises.length - 2 && currentSerie.exercises[_counter+1].length[0] == 'x'){
+        _counter++;
       }
       else {
         end = true;
@@ -51,12 +52,6 @@ class _SerieRunPageState extends State<SerieRunPage> {
   // Digital formatting, converting 0-9 time to 00-09
   String formatTime(int timeNum) {
     return timeNum < 10 ? "0" + timeNum.toString() : timeNum.toString();
-  }
-
-  void _setEnd() {
-    setState(() {
-      end = true;
-    });
   }
 
   @override
@@ -79,7 +74,6 @@ class _SerieRunPageState extends State<SerieRunPage> {
       }
     });
   }
-
 
   @override
   Widget _buildButtonSelection (BuildContext context){
@@ -112,16 +106,14 @@ class _SerieRunPageState extends State<SerieRunPage> {
         );
       }
       else {
-        return Text(constructTime(_seconds));
-        /*Timer(Duration(seconds: int.parse(currentSerie.exercises[_counter].length.substring(0,2))), () {
-          _incrementCounter();
-        });
-        if (lastTimer) {
-          Timer(Duration(seconds: int.parse(currentSerie.exercises[_counter].length.substring(0,2))), () {
-            _setEnd();
-          });
-        }*/
-        // return  TimerSetter(timeLenght: int.parse(currentSerie.exercises[_counter].length.substring(0,2)));
+        return Text(
+          constructTime(_seconds),
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 40.0,
+            color: Color.fromRGBO(110,151,159,1),
+          ),
+        );
       }
     }
   }
@@ -157,7 +149,7 @@ class _SerieRunPageState extends State<SerieRunPage> {
                       color: Color.fromRGBO(110,151,159,1),
                     ),
                   ),
-                  Expanded(
+                  (currentSerie.exercises[_counter].length[0] == 'x')? Expanded(
                     child: Text(
                       currentSerie.exercises[_counter].length,
                       style: TextStyle(
@@ -166,13 +158,14 @@ class _SerieRunPageState extends State<SerieRunPage> {
                         color: Color.fromRGBO(110,151,159,1),
                       ),
                     ),
+                  ):Expanded(
+                    child: Container(),
                   ),
                   Container(
                     margin: EdgeInsets.all(10.0),
                     child : _buildButtonSelection(context)
                   ),
                 ],
-
               ),
             ),
           ]
