@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_sport_app/routes/MyHomePage.dart';
 
-
 import '../data/Serie.dart';
 
 class SerieRunPage extends StatefulWidget {
@@ -16,9 +15,11 @@ class SerieRunPage extends StatefulWidget {
   @override
   _SerieRunPageState createState() => _SerieRunPageState(currentSerie: currentSerie);
 }
-class _SerieRunPageState extends State<SerieRunPage>  {
+class _SerieRunPageState extends State<SerieRunPage> {
 
   final Serie currentSerie;
+  Timer _timer;
+  int _seconds;
 
   _SerieRunPageState({Key key, @required this.currentSerie});
   int _counter = 0;
@@ -41,6 +42,18 @@ class _SerieRunPageState extends State<SerieRunPage>  {
     });
   }
 
+  // Time formatting, converted to the corresponding hh:mm:ss format according to the total number of seconds
+  String constructTime(int seconds) {
+    int minute = seconds % 3600 ~/ 60;
+    int second = seconds % 60;
+    return  formatTime(minute) + ":" + formatTime(second);
+  }
+
+  // Digital formatting, converting 0-9 time to 00-09
+  String formatTime(int timeNum) {
+    return timeNum < 10 ? "0" + timeNum.toString() : timeNum.toString();
+  }
+
   void _setEnd() {
     setState(() {
       end = true;
@@ -48,7 +61,29 @@ class _SerieRunPageState extends State<SerieRunPage>  {
   }
 
   @override
+  void initState() {
+    super.initState();
+    (currentSerie.exercises[_counter].length[0] == 'x')? _seconds= null : _seconds = int.parse(currentSerie.exercises[_counter].length.substring(0,2));
+    _startTimer();
+  }
 
+  void _startTimer (){
+    const period = const Duration(seconds: 1);
+    _timer = Timer.periodic(period, (timer) {
+      // Callback on time
+      setState(() {
+        _seconds --;
+      });
+      if (_seconds == 0) {
+        // Cancel timer to avoid infinite callback
+        _incrementCounter();
+        _timer.cancel();
+        _timer = null;
+      }
+    });
+  }
+
+  @override
   Widget _buildButtonSelection (BuildContext context){
     if (end) {
       return RaisedButton(
@@ -79,15 +114,16 @@ class _SerieRunPageState extends State<SerieRunPage>  {
         );
       }
       else {
-        Timer(Duration(seconds: int.parse(currentSerie.exercises[_counter].length.substring(0,2))), () {
+        return Text(constructTime(_seconds));
+        /*Timer(Duration(seconds: int.parse(currentSerie.exercises[_counter].length.substring(0,2))), () {
           _incrementCounter();
         });
         if (lastTimer) {
           Timer(Duration(seconds: int.parse(currentSerie.exercises[_counter].length.substring(0,2))), () {
             _setEnd();
           });
-        }
-        return Icon(Icons.access_time, color:Color.fromRGBO(110,151,159,1),);
+        }*/
+        // return  TimerSetter(timeLenght: int.parse(currentSerie.exercises[_counter].length.substring(0,2)));
       }
     }
   }
@@ -135,7 +171,7 @@ class _SerieRunPageState extends State<SerieRunPage>  {
                   ),
                   Container(
                     margin: EdgeInsets.all(10.0),
-                    child : _buildButtonSelection(context),
+                    child : _buildButtonSelection(context)
                   ),
                 ],
 
