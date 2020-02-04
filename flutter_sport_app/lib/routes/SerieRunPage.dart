@@ -28,16 +28,15 @@ class _SerieRunPageState extends State<SerieRunPage> {
 
   void _incrementCounter() {
     setState(() {
-      if (_counter < currentSerie.exercises.length - 2) {
+      if (_counter < currentSerie.exercises.length - 1) {
         _counter++;
-      }
-      else if (currentSerie.exercises[_counter+1].length[0] == 'x'){
-          _counter++;
-          end = true;
+        if (currentSerie.exercises[_counter].length[0] != 'x') {
+          _seconds =
+              int.parse(currentSerie.exercises[_counter].length.substring(0, 2));
+        }
       }
       else {
-        _counter++;
-        lastTimer = true;
+        end = true;
       }
     });
   }
@@ -67,6 +66,7 @@ class _SerieRunPageState extends State<SerieRunPage> {
     _startTimer();
   }
 
+
   void _startTimer (){
     const period = const Duration(seconds: 1);
     _timer = Timer.periodic(period, (timer) {
@@ -75,13 +75,11 @@ class _SerieRunPageState extends State<SerieRunPage> {
         _seconds --;
       });
       if (_seconds == 0) {
-        // Cancel timer to avoid infinite callback
         _incrementCounter();
-        _timer.cancel();
-        _timer = null;
       }
     });
   }
+
 
   @override
   Widget _buildButtonSelection (BuildContext context){
