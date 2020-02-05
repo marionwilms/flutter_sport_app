@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
 import 'package:flutter_sport_app/routes/MyHomePage.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 import '../data/Serie.dart';
 
@@ -36,7 +39,11 @@ class _SerieRunPageState extends State<SerieRunPage> {
       else if (_counter < currentSerie.exercises.length - 2 && currentSerie.exercises[_counter+1].length[0] == 'x'){
         _counter++;
       }
-      else {
+      else if (_counter == currentSerie.exercises.length - 2 && currentSerie.exercises[_counter+1].length[0] == 'x'){
+        _counter++;
+        end = true;
+      }
+      else{
         end = true;
       }
     });
@@ -121,6 +128,20 @@ class _SerieRunPageState extends State<SerieRunPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      appBar: AppBar(backgroundColor: Color.fromRGBO(110, 151, 159, 0.8),
+        iconTheme: IconThemeData(
+            color: Color.fromRGBO(252, 234, 220, 1)
+        ),
+        title: Text(
+          currentSerie.title,
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 45.0,
+            letterSpacing: 10.0,
+            color: Color.fromRGBO(252, 234, 220, 1),
+          ),
+        ),
+      ),
       body: Container(
         color: Color.fromRGBO(252, 234, 220, 1),
         child: Stack(
@@ -128,18 +149,6 @@ class _SerieRunPageState extends State<SerieRunPage> {
             Center(
               child: Column(
                 children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.all(15.0),
-                    child: Text(
-                      currentSerie.title,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 45.0,
-                        letterSpacing: 10.0,
-                        color: Color.fromRGBO(110,151,159,1),
-                      ),
-                    ),
-                  ),
                   Image.asset('images/' + currentSerie.exercises[_counter].title + '.jpg'),  //all images should be in jpg and added in pubspec.yaml
                   Text(
                     currentSerie.exercises[_counter].title,
