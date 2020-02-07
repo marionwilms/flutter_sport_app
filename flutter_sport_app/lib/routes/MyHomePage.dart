@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'ExerciseDetails.dart';
 import 'package:flutter_sport_app/data/globals.dart' as global;
 
@@ -17,7 +16,7 @@ class MyHomePage extends StatelessWidget {
           return Column(
             children: <Widget>[
               Card(
-                color: Color.fromRGBO(110,151,159,0.8),
+                color: Color.fromRGBO(10,10,10,0.8),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -42,7 +41,7 @@ class MyHomePage extends StatelessWidget {
                             child: Text(
                               global.serieL[position].title,
                               style: TextStyle(
-                              fontSize: 22.0, fontFamily: 'Poppins', fontWeight: FontWeight.bold, color:Color.fromRGBO(248, 199, 183, 1)),
+                              fontSize: 22.0, fontFamily: 'Poppins', fontWeight: FontWeight.bold, color:Colors.white),
                             ),
                           ),
                         ],
@@ -57,7 +56,7 @@ class MyHomePage extends StatelessWidget {
                                 child: Container(
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                        color: Color.fromRGBO(248, 199, 183, 1),
+                                        color: Colors.white,
                                         width: 2.0,
                                       ),
                                       color:Colors.transparent,
@@ -66,7 +65,7 @@ class MyHomePage extends StatelessWidget {
                                   child: CircleAvatar(
                                     backgroundColor: Colors.transparent,
                                     child: Text(global.serieL[position].length,
-                                    style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins', color:Color.fromRGBO(248, 199, 183, 1),
+                                    style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins', color:Colors.white,
                                     ),
                                   ),
                                 ),
@@ -116,7 +115,7 @@ class MyHomePage extends StatelessWidget {
                           fontFamily: 'Poppins',
                           fontSize: 45.0,
                           letterSpacing: 10.0,
-                          color: Color.fromRGBO(110,151,159,1),
+                          color: Colors.white70,
                         ),
                     ),
                   ),

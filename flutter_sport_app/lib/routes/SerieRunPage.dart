@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:async';
 import 'package:flutter_sport_app/routes/MyHomePage.dart';
 import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
-
 import '../data/Serie.dart';
+
+import 'dart:async';
 
 class SerieRunPage extends StatefulWidget {
 
@@ -93,9 +91,9 @@ class _SerieRunPageState extends State<SerieRunPage> {
             MaterialPageRoute(builder: (context) => MyHomePage(title: 'Training')),
           );
         },
-        textColor: Color.fromRGBO(252, 234, 220, 1),
+        textColor: Colors.white70,
         padding:EdgeInsets.all(15.0),
-        color: Color.fromRGBO(110,151,159,1),
+        color: Colors.black87,
         child: Text(
             'Fin',style: TextStyle(fontSize: 20)
         ),
@@ -105,9 +103,9 @@ class _SerieRunPageState extends State<SerieRunPage> {
       if (currentSerie.exercises[_counter].length[0] == 'x'){
         return RaisedButton(
           onPressed: _incrementCounter,
-          textColor: Color.fromRGBO(252, 234, 220, 1),
+          textColor: Colors.white70,
           padding:EdgeInsets.all(15.0),
-          color: Color.fromRGBO(110,151,159,1),
+          color: Colors.black87,
           child: Text(
               'suivant',style: TextStyle(fontSize: 20)
           ),
@@ -119,7 +117,7 @@ class _SerieRunPageState extends State<SerieRunPage> {
             height: 100.0,
           decoration: BoxDecoration(
               border: Border.all(
-                color: Color.fromRGBO(248, 199, 183, 1),
+                color: Colors.black87,
                 width: 2.0,
               ),
               color:Colors.transparent,
@@ -131,7 +129,7 @@ class _SerieRunPageState extends State<SerieRunPage> {
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 40.0,
-                  color: Color.fromRGBO(110,151,159,1),
+                  color: Colors.black87,
                 ),
               ),
           )
@@ -143,9 +141,9 @@ class _SerieRunPageState extends State<SerieRunPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color.fromRGBO(110, 151, 159, 0.8),
+      appBar: AppBar(backgroundColor: Colors.black87,
         iconTheme: IconThemeData(
-            color: Color.fromRGBO(252, 234, 220, 1)
+            color: Colors.white70
         ),
         title: Text(
           currentSerie.title,
@@ -153,12 +151,12 @@ class _SerieRunPageState extends State<SerieRunPage> {
             fontFamily: 'Poppins',
             fontSize: 45.0,
             letterSpacing: 10.0,
-            color: Color.fromRGBO(252, 234, 220, 1),
+            color: Colors.white70,
           ),
         ),
       ),
       body: Container(
-        color: Color.fromRGBO(252, 234, 220, 1),
+        color: Colors.white70,
         child: Stack(
           children: <Widget>[
             Center(
@@ -169,8 +167,8 @@ class _SerieRunPageState extends State<SerieRunPage> {
                     currentSerie.exercises[_counter].title,
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 18.0,
-                      color: Color.fromRGBO(110,151,159,1),
+                      fontSize: 28.0,
+                      color: Colors.black87,
                     ),
                   ),
                   (currentSerie.exercises[_counter].length[0] == 'x')? Expanded(
@@ -178,8 +176,8 @@ class _SerieRunPageState extends State<SerieRunPage> {
                       currentSerie.exercises[_counter].length,
                       style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 18.0,
-                        color: Color.fromRGBO(110,151,159,1),
+                        fontSize: 28.0,
+                        color: Colors.black87,
                       ),
                     ),
                   ):Expanded(

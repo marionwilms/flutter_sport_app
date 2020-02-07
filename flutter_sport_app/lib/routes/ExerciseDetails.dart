@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sport_app/routes/MyHomePage.dart';
 import 'package:flutter_sport_app/routes/SerieRunPage.dart';
 
 import '../data/Serie.dart';
@@ -30,7 +29,8 @@ class ExerciseDetails extends StatelessWidget {
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Poppins',
-                          color: Color.fromRGBO(110, 151, 159, 1),),
+                          color: Colors.black87,
+                        ),
                       ),
                     ),
                     Padding(
@@ -41,7 +41,7 @@ class ExerciseDetails extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18.0,
                           fontFamily: 'Poppins',
-                          color: Color.fromRGBO(110, 151, 159, 1),
+                          color: Colors.black87,
                         ),
                       ),
                     ),
@@ -65,7 +65,7 @@ class ExerciseDetails extends StatelessWidget {
             ),
             Divider(
               height: 2.0,
-              color: Color.fromRGBO(110, 151, 159, 1),
+              color: Colors.black87,
             )
           ],
         );
@@ -77,67 +77,25 @@ class ExerciseDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(110, 151, 159, 0.8),
-        iconTheme: IconThemeData(color: Color.fromRGBO(252, 234, 220, 1)),
+        backgroundColor: Colors.black87,
+        iconTheme: IconThemeData(color: Colors.white70),
         title: Text(
           currentSerie.title,
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: 45.0,
             letterSpacing: 10.0,
-            color: Color.fromRGBO(252, 234, 220, 1),
+            color: Colors.white70,
           ),
         ),
       ),
       body: Container(
-        color: Color.fromRGBO(252, 234, 220, 1),
+        color: Colors.white70,
         child: Stack(
             children: <Widget>[
               Center(
                 child: Column(
                   children: <Widget>[
-                    /*Container(
-                      margin: const EdgeInsets.all(15.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                IconButton(
-                                    color: Colors.transparent,
-                                    icon: Icon(
-                                        Icons.arrow_back_ios,
-                                        size: 35.0,
-                                        color: Color.fromRGBO(110, 151, 159, 1)
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) =>
-                                            MyHomePage(title: 'Training')),
-                                      );
-                                    }
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: <Widget>[
-                                  Text(
-                                    currentSerie.title,
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 45.0,
-                                      letterSpacing: 10.0,
-                                      color: Color.fromRGBO(110, 151, 159, 1),
-                                    ),
-                                  ),
-
-                              ],
-                            ),
-                          ]
-                      ),
-                    ),*/
-
                     Expanded(
                         child: _buildListView(context)
                     ),
@@ -151,8 +109,8 @@ class ExerciseDetails extends StatelessWidget {
                                 SerieRunPage(currentSerie: currentSerie)),
                           );
                         },
-                        textColor: Color.fromRGBO(252, 234, 220, 1),
-                        color: Color.fromRGBO(110, 151, 159, 1),
+                        textColor: Colors.white70,
+                        color: Colors.black87,
                         padding: EdgeInsets.all(15.0),
                         child: Text(
                             'Commencer', style: TextStyle(fontSize: 20)
